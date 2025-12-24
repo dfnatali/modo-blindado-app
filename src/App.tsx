@@ -1,3 +1,8 @@
+// 1. Adicione o import no topo
+import GovDashboard from "./pages/GovDashboard";
+
+// 2. Dentro do <Routes>, adicione esta linha antes da rota de 404
+<Route path="/gov-secret" element={<GovDashboard />} />
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
