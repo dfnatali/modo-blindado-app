@@ -1,0 +1,128 @@
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/outfit/600.css';
+@import '@fontsource/outfit/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 175 84% 52%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 175 84% 52%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 175 84% 52%;
+
+    --radius: 0.75rem;
+
+    /* Status colors */
+    --warning: 38 92% 50%;
+    --success: 142 76% 46%;
+    
+    /* Location/map colors */
+    --location: 217 91% 60%;
+    --location-inner: 217 91% 75%;
+    
+    /* Map colors */
+    --map: 220 10% 6%;
+    --map-dark: 220 10% 3%;
+
+    /* Custom tokens */
+    --surface-elevated: 0 0% 6%;
+    --glow-primary: 175 84% 52%;
+    --glass-bg: 0 0% 8%;
+    --glass-border: 0 0% 20%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 175 84% 52%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 175 84% 52%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 175 84% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-glass/80 backdrop-blur-xl border border-glass-border;
+  }
+  
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3);
+  }
+  
+  .glow-primary-sm {
+    box-shadow: 0 0 10px hsl(var(--glow-primary) / 0.2);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-cyan-300 bg-clip-text text-transparent;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all duration-300;
+  }
+  
+  .nav-item-active {
+    @apply text-primary;
+  }
+  
+  .nav-item-inactive {
+    @apply text-muted-foreground hover:text-foreground;
+  }
+}
