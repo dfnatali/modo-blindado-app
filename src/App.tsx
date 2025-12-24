@@ -1,42 +1,31 @@
-// 1. Adicione o import no topo
-import GovDashboard from "./pages/GovDashboard";
-
-// 2. Dentro do <Routes>, adicione esta linha antes da rota de 404
-<Route path="/gov-secret" element={<GovDashboard />} />
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// IMPORTAÇÕES CORRIGIDAS (Usando o alias @ que aponta para src)
-import { SecurityProvider } from "@/context/SecurityContext";
-
-import HomePage from "@/pages/HomePage";
-import Index from "@/pages/Index"; // Página do Radar
-import BlindagemPage from "@/pages/BlindagemPage";
-import ScannerPage from "@/pages/ScannerPage";
-import PerfilPage from "@/pages/PerfilPage";
-import NotFound from "@/pages/NotFound";
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import GovDashboard from "./pages/GovDashboard"; // <--- Importação Crítica
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SecurityProvider>
-        <Toaster />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/radar" element={<Index />} />
-            <Route path="/blindagem" element={<BlindagemPage />} />
-            <Route path="/scanner" element={<ScannerPage />} />
-            <Route path="/perfil" element={<PerfilPage />} />
-            {/* Rota para erros 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </SecurityProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          {/* Rota Principal (Home) */}
+          <Route path="/" element={<Index />} />
+          
+          {/* Rota Secreta do Governo (A que estava faltando) */}
+          <Route path="/gov-secret" element={<GovDashboard />} />
+
+          {/* Rota de Erro (Deve ser SEMPRE a última) */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
